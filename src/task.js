@@ -13,6 +13,7 @@ class Task {
     this.priority = priority;
     this.notes = notes;
     this.isComplete = isComplete;
+    this.id = crypto.randomUUID();
   }
 }
 

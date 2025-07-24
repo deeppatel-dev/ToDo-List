@@ -4,6 +4,7 @@ class Project {
   constructor(name = "") {
     this.name = name;
     this.tasks = [];
+    this.id = crypto.randomUUID();
   }
   addTask(
     title = "",
