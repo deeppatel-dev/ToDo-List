@@ -1,8 +1,21 @@
+import Task from "./task";
+
 class Project {
-  tasks = [];
   constructor(name = "") {
     this.name = name;
     this.tasks = [];
+  }
+  addTask(
+    title = "",
+    description = "",
+    dueDate = "",
+    priority = "Low",
+    notes = "",
+    isComplete = false,
+  ) {
+    this.tasks.push(
+      new Task(title, description, dueDate, priority, notes, isComplete),
+    );
   }
 }
 

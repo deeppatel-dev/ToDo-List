@@ -4,13 +4,13 @@ import Project from "./project";
 
 console.log("test");
 
-let Projects = [];
+let projects = [];
 
 let projectOne = new Project("example");
 
-Projects.push(projectOne);
+projects.push(projectOne);
 
-projectOne.tasks = new Task(
+projectOne.addTask(
   "Example Task",
   "This is an Example Task",
   "9/15/25",
@@ -19,6 +19,17 @@ projectOne.tasks = new Task(
   false,
 );
 
-for (const project of Projects) {
-  console.log(project.tasks);
+projectOne.addTask(
+  "example two",
+  "This is another example task",
+  "9/16/25",
+  "High",
+  "N/A",
+  false,
+);
+
+for (const project of projects) {
+  for (const task of project.tasks) {
+    console.log(task);
+  }
 }
