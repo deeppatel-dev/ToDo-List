@@ -1,3 +1,29 @@
+:root {
+  --bg: #1e1e2f;
+  --sidebar: #25253b;
+  --card: #2c2c3e;
+  --text: #f0f0f0; /* Primary text */
+  --accent: #4f8cff; /* Accent (buttons, highlights) */
+  --border: #444457; /* Borders/dividers */
+  --muted: #a0a0a0; /* Secondary text */
+}
+
 body {
-  background-color: fuchsia;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--sidebar);
+  padding: 0.75rem;
+  text-align: center;
+  color: var(--text);
 }
