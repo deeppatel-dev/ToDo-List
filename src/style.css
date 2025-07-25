@@ -91,3 +91,19 @@ li > .delete-project {
   font-size: 1.25rem;
   cursor: pointer;
 }
+
+main {
+  margin-top: 0.5rem;
+  color: var(--text);
+  text-align: center;
+}
+
+main .addTask {
+  font-size: 1rem;
+  padding: 0.65em 0.85em;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
