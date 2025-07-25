@@ -18,13 +18,13 @@
             placeholder="Enter Project Name"
             required
           />
-          <button type="submit" class="createProject">Create Project</button>
+          <button type="submit" class="createProject">New Project</button>
         </form>
         <ul class="project-list"></ul>
       </div>
       <main>
         <h1>Tasks</h1>
-        <button class="addTask">New Task</button>
+        <button class="newTask">New Task</button>
         <dialog>
           <h1>Enter Task Information</h1>
           <form method="dialog">
@@ -39,16 +39,36 @@
             </div>
 
             <div class="form-item">
-              <label for="dueDate">Due Date:</label>
-              <input type="date" name="dueDate" id="dueDate" />
+              <label for="taskDueDate">Due Date:</label>
+              <input type="date" name="taskDueDate" id="taskDueDate" />
             </div>
+
+            <div class="form-item">
+              <label for="taskPriority">Priority:</label>
+              <select name="taskPriority" id="taskPriority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+
+            <div class="form-item checkBox">
+              <label for="taskCompletion">Completed?</label>
+              <input
+                type="checkbox"
+                name="taskCompletion"
+                id="taskCompletion"
+              />
+            </div>
+
+            <button class="addTask" type="submit">Add Task</button>
           </form>
         </dialog>
       </main>
     </div>
 
     <script>
-      document.querySelector(".addTask").addEventListener("click", () => {
+      document.querySelector(".newTask").addEventListener("click", () => {
         document.querySelector("dialog").showModal();
       });
     </script>
