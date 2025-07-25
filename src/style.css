@@ -26,4 +26,25 @@ body {
   padding: 0.75rem;
   text-align: center;
   color: var(--text);
+  border-right: 1px solid var(--border);
+}
+
+form {
+  margin-top: 1.5rem;
+}
+
+form > input {
+  border: none;
+  border-radius: 0.25rem;
+  width: 12.5rem;
+  padding: 0.5rem;
+}
+
+form > button[type="submit"] {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  margin-left: 0.25rem;
 }
