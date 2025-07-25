@@ -15,7 +15,6 @@ projectOne.addTask(
   "This is an Example Task",
   "9/15/25",
   "Low",
-  "N/A",
   false,
 );
 
@@ -24,7 +23,6 @@ projectOne.addTask(
   "This is another example task",
   "9/16/25",
   "High",
-  "N/A",
   false,
 );
 
