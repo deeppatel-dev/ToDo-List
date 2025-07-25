@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("./assets/OpenSans-VariableFont_wdth,wght.ttf") format("ttf");
+}
+
 :root {
   --bg: #1e1e2f;
   --sidebar: #25253b;
@@ -9,6 +14,7 @@
 }
 
 body {
+  font-family: "Open Sans" sans-serif;
   background-color: var(--bg);
   margin: 0;
   padding: 0;
