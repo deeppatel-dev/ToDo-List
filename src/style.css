@@ -29,18 +29,18 @@ body {
   border-right: 1px solid var(--border);
 }
 
-form {
+.sidebar > form {
   margin: 1.5rem 0 4rem;
 }
 
-form > input {
+.sidebar > form > input {
   border: none;
   border-radius: 0.25rem;
   width: 12.5rem;
   padding: 0.5rem;
 }
 
-form > button[type="submit"] {
+.sidebar > form > button[type="submit"] {
   padding: 0.5rem 1rem;
   background-color: var(--accent);
   border: none;
@@ -106,4 +106,27 @@ main .addTask {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+}
+
+dialog {
+  background-color: #34344a;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+main form {
+  display: grid;
+  gap: 0.75rem;
+  /* flex-direction: column; */
+}
+
+.form-item {
+  display: grid;
+}
+
+.form-item label {
+  text-align: left;
 }

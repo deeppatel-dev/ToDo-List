@@ -22,10 +22,35 @@
         </form>
         <ul class="project-list"></ul>
       </div>
-      <main class="content">
+      <main>
         <h1>Tasks</h1>
         <button class="addTask">New Task</button>
+        <dialog>
+          <h1>Enter Task Information</h1>
+          <form method="dialog">
+            <div class="form-item">
+              <label for="taskTitle">Title:</label>
+              <input type="text" name="taskTitle" id="taskTitle" required />
+            </div>
+
+            <div class="form-item">
+              <label for="taskDescription">Description:</label>
+              <textarea name="taskDescription" id="taskDescription"></textarea>
+            </div>
+
+            <div class="form-item">
+              <label for="dueDate">Due Date:</label>
+              <input type="date" name="dueDate" id="dueDate" />
+            </div>
+          </form>
+        </dialog>
       </main>
     </div>
+
+    <script>
+      document.querySelector(".addTask").addEventListener("click", () => {
+        document.querySelector("dialog").showModal();
+      });
+    </script>
   </body>
 </html>
