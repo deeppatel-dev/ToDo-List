@@ -76,3 +76,18 @@ form > button[type="submit"] {
     0 0 0 2px rgba(255, 255, 255, 0.1) inset;
   transform: translateY(-1px);
 }
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+li > .delete-project {
+  background: none;
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
