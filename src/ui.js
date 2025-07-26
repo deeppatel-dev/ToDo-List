@@ -12,7 +12,25 @@ function setupProjectForm() {
     projectInput.value = "";
     projects.push(newProject);
     console.log(projects);
+
+    renderProjects();
   });
+}
+
+function renderProjects() {
+  const projectList = document.querySelector(".project-list");
+  projectList.innerHTML = "";
+  for (const project of projects) {
+    const projectName = document.createElement("li");
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "x";
+    deleteButton.classList.add("delete-project");
+    projectName.dataset.id = project.id;
+    projectName.classList.add("project-item");
+    projectName.textContent = project.name;
+    projectName.appendChild(deleteButton);
+    projectList.appendChild(projectName);
+  }
 }
 
 export { setupProjectForm };
