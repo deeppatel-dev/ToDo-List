@@ -1,10 +1,9 @@
 import "./style.css";
 import Task from "./task";
 import Project from "./project";
+import { projects } from "./storage.js";
 
 console.log("test");
-
-let projects = [];
 
 let projectOne = new Project("example");
 
