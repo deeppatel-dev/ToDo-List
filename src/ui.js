@@ -4,6 +4,7 @@ import { projects } from "./storage.js";
 import { parse, format, parseISO } from "date-fns";
 
 let selectedProject;
+let currentlyEditingTask = null;
 
 function setupProjectForm() {
   const projectInput = document.querySelector("#projectName");
@@ -16,6 +17,29 @@ function setupProjectForm() {
     projects.push(newProject);
 
     renderProjects();
+  });
+}
+
+function setupProjectDeletion() {
+  const projectContainer = document.querySelector(".project-list");
+  projectContainer.addEventListener("click", (event) => {
+    console.log(event.target);
+    if (!event.target.classList.contains("delete-project")) {
+      return;
+    }
+    let id = event.target.parentElement.dataset.id;
+    if (
+      (selectedProject && selectedProject.id === id) ||
+      projects.length === 1
+    ) {
+      selectedProject = null;
+    }
+    const index = projects.findIndex((project) => project.id === id);
+    if (index !== -1) {
+      projects.splice(index, 1);
+    }
+    renderProjects();
+    renderTasks(selectedProject);
   });
 }
 
@@ -64,7 +88,10 @@ function selectProject() {
   const projectList = document.querySelector(".project-list");
 
   projectList.addEventListener("click", (e) => {
-    if (e.target.classList.contains("project-list")) {
+    if (
+      e.target.classList.contains("project-list") ||
+      e.target.classList.contains("delete-project")
+    ) {
       return;
     }
     const projectsList = document.querySelectorAll(".project-list li");
@@ -84,7 +111,6 @@ function selectProject() {
   });
 }
 
-let currentlyEditingTask = null;
 function selectTask() {
   const taskContainer = document.querySelector(".task-section");
 
@@ -157,6 +183,12 @@ function setupEditForm() {
 function renderTasks(project) {
   const taskContainer = document.querySelector(".task-section");
   taskContainer.innerHTML = "";
+  if (!project) {
+    const warning = document.createElement("h1");
+    warning.textContent = "Please Select a Project";
+    taskContainer.appendChild(warning);
+    return;
+  }
   for (const task of project.tasks) {
     const card = document.createElement("div");
     card.classList.add("task");
@@ -237,4 +269,5 @@ export {
   selectProject,
   selectTask,
   setupEditForm,
+  setupProjectDeletion,
 };

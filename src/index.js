@@ -8,6 +8,7 @@ import {
   setupTaskForm,
   selectTask,
   setupEditForm,
+  setupProjectDeletion,
 } from "./ui.js";
 
 console.log("test");
@@ -17,3 +18,4 @@ setupTaskForm();
 selectProject();
 selectTask();
 setupEditForm();
+setupProjectDeletion();
