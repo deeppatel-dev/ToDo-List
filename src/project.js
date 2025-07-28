@@ -11,11 +11,10 @@ class Project {
     description = "",
     dueDate = "",
     priority = "Low",
-    notes = "",
     isComplete = false,
   ) {
     this.tasks.push(
-      new Task(title, description, dueDate, priority, notes, isComplete),
+      new Task(title, description, dueDate, priority, isComplete),
     );
   }
 }

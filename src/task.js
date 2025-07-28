@@ -3,17 +3,18 @@ class Task {
     title = "",
     description = "",
     dueDate = "",
-    priority = "Low",
-    notes = "",
+    priority = "low",
     isComplete = false,
   ) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.notes = notes;
     this.isComplete = isComplete;
     this.id = crypto.randomUUID();
+  }
+  toggleCompletion() {
+    this.isComplete = !this.isComplete;
   }
 }
 

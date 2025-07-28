@@ -1,3 +1,260 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("./assets/OpenSans-VariableFont_wdth,wght.ttf") format("ttf");
+}
+
+:root {
+  --bg: #1e1e2f;
+  --sidebar: #25253b;
+  --card: #2c2c3e;
+  --text: #f0f0f0; /* Primary text */
+  --accent: #4f8cff; /* Accent (buttons, highlights) */
+  --border: #444457; /* Borders/dividers */
+  --muted: #a0a0a0; /* Secondary text */
+}
+
 body {
-  background-color: fuchsia;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--sidebar);
+  padding: 0.75rem;
+  text-align: center;
+  color: var(--text);
+  border-right: 1px solid var(--border);
+}
+
+.sidebar > form {
+  margin: 1.5rem 0 4rem;
+}
+
+.sidebar > form > input {
+  border: none;
+  border-radius: 0.25rem;
+  width: 12.5rem;
+  padding: 0.5rem;
+}
+
+.sidebar > form > button[type="submit"] {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  margin-left: 0.25rem;
+  cursor: pointer;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-item {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background: var(--card);
+  margin-bottom: 0.5rem;
+}
+
+.project-item:hover {
+  background: #3b3b3b;
+}
+
+.project-item.active {
+  background: var(--accent);
+  color: white;
+  box-shadow:
+    0 4px 8px rgba(64, 86, 244, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+  transform: translateY(-1px);
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+li > .delete-project {
+  background: none;
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+main {
+  margin-top: 0.5rem;
+  color: var(--text);
+  text-align: center;
+}
+
+main .newTask {
+  font-size: 1rem;
+  padding: 0.65em 0.85em;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+dialog {
+  background-color: #34344a;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+main form,
+.editDialog form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+main form input,
+main form textarea,
+main form select,
+.editDialog form input,
+.editDialog form textarea,
+.editDialog form select {
+  accent-color: var(--accent);
+  background-color: #2a2a3d;
+  border: var(--border);
+  border-radius: 16px;
+  padding: 0.5rem 1rem;
+  color: var(--text);
+}
+
+.form-item {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.form-item label {
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.checkBox {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  gap: 1ch;
+}
+
+.checkBox label {
+  text-transform: capitalize;
+}
+
+main form button,
+.editDialog form button {
+  justify-self: center;
+  font-size: 1rem;
+  padding: 0.65em 0.85em;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+}
+
+.task-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.task {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  background-color: var(--card);
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.5rem;
+  margin: 1rem 0rem 0rem 0rem;
+  min-width: 0;
+}
+
+.task.high {
+  border-left: solid 8px red;
+}
+
+.task.medium {
+  border-left: solid 8px #f0b429;
+}
+
+.task.low {
+  border-left: solid 8px green;
+}
+
+.task h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: var(--text);
+}
+
+.task p,
+.task h5 {
+  color: var(--muted);
+}
+
+.description {
+  padding-bottom: 1rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+}
+
+.task h5 {
+  font-size: 1rem;
+  padding: 0.25rem 0rem 1.5rem;
+  margin: 0;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0rem 2rem 0rem;
+}
+
+.buttonGroup > button {
+  cursor: pointer;
+  padding: 0.9em;
+  width: 175px;
+  margin-right: 1rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
 }

@@ -1,35 +1,23 @@
 import "./style.css";
 import Task from "./task";
 import Project from "./project";
+import { projects } from "./storage.js";
+import {
+  setupProjectForm,
+  selectProject,
+  setupTaskForm,
+  selectTask,
+  setupEditForm,
+  setupProjectDeletion,
+  setupTaskButtons,
+} from "./ui.js";
 
 console.log("test");
 
-let projects = [];
-
-let projectOne = new Project("example");
-
-projects.push(projectOne);
-
-projectOne.addTask(
-  "Example Task",
-  "This is an Example Task",
-  "9/15/25",
-  "Low",
-  "N/A",
-  false,
-);
-
-projectOne.addTask(
-  "example two",
-  "This is another example task",
-  "9/16/25",
-  "High",
-  "N/A",
-  false,
-);
-
-for (const project of projects) {
-  for (const task of project.tasks) {
-    console.log(task);
-  }
-}
+setupProjectForm();
+setupTaskForm();
+selectProject();
+selectTask();
+setupEditForm();
+setupProjectDeletion();
+setupTaskButtons();
