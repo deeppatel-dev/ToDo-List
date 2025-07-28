@@ -18,6 +18,40 @@ function setupProjectForm() {
   });
 }
 
+function setupTaskForm() {
+  let dialog = document.querySelector("dialog");
+  document.querySelector(".newTask").addEventListener("click", () => {
+    if (!selectedProject) {
+      return;
+    }
+    dialog.showModal();
+  });
+  const form = document.querySelector("dialog form");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const taskTitle = document.querySelector("#taskTitle");
+    const title = taskTitle.value;
+
+    const taskDescription = document.querySelector("#taskDescription");
+    const description = taskDescription.value;
+
+    const taskDueDate = document.querySelector("#taskDueDate");
+    const dueDate = taskDueDate.value;
+
+    const taskPriority = document.querySelector("#taskPriority");
+    const priority = taskPriority.value;
+
+    const taskCompletion = document.querySelector("#taskCompletion");
+    const isComplete = taskCompletion.checked;
+
+    selectedProject.addTask(title, description, dueDate, priority, isComplete);
+    renderTasks(selectedProject);
+    form.reset();
+    dialog.close();
+  });
+}
+
 function selectProject() {
   const projectList = document.querySelector(".project-list");
 
@@ -79,6 +113,7 @@ function renderTasks(project) {
     card.appendChild(completionStatus);
 
     const buttonGroup = document.createElement("div");
+    buttonGroup.classList.add("buttonGroup");
 
     const removeButton = document.createElement("button");
     removeButton.classList.add("remove");
@@ -116,4 +151,10 @@ function renderProjects() {
   }
 }
 
-export { setupProjectForm, renderProjects, selectedProject, selectProject };
+export {
+  setupProjectForm,
+  setupTaskForm,
+  renderProjects,
+  selectedProject,
+  selectProject,
+};
