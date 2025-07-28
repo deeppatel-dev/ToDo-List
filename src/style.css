@@ -123,14 +123,18 @@ dialog {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-main form {
+main form,
+.editDialog form {
   display: grid;
   gap: 0.75rem;
 }
 
 main form input,
 main form textarea,
-main form select {
+main form select,
+.editDialog form input,
+.editDialog form textarea,
+.editDialog form select {
   accent-color: var(--accent);
   background-color: #2a2a3d;
   border: var(--border);
@@ -160,7 +164,8 @@ main form select {
   text-transform: capitalize;
 }
 
-main form button {
+main form button,
+.editDialog form button {
   justify-self: center;
   font-size: 1rem;
   padding: 0.65em 0.85em;

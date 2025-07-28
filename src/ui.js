@@ -1,7 +1,7 @@
 import Task from "./task";
 import Project from "./project";
 import { projects } from "./storage.js";
-import { format } from "date-fns";
+import { parse, format } from "date-fns";
 
 let selectedProject;
 
@@ -84,25 +84,6 @@ function selectProject() {
   });
 }
 
-function selectTask() {
-  const taskContainer = document.querySelector(".task-section");
-  taskContainer.addEventListener("click", (event) => {
-    if (
-      event.target.textContent === "Please Select a Project" ||
-      event.target.classList.contains("task-section")
-    ) {
-      return;
-    }
-
-    let id = event.target.dataset.id || event.target.parentElement.dataset.id;
-    if (id) {
-      console.log(`The ID is ${id}`);
-    }
-  });
-}
-
-// function editTask() {}
-
 function renderTasks(project) {
   const taskContainer = document.querySelector(".task-section");
   taskContainer.innerHTML = "";
@@ -184,5 +165,4 @@ export {
   renderProjects,
   selectedProject,
   selectProject,
-  selectTask,
 };
