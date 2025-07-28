@@ -20,6 +20,36 @@ function setupProjectForm() {
   });
 }
 
+function setupTaskButtons() {
+  const taskContainer = document.querySelector(".task-section");
+  taskContainer.addEventListener("click", (event) => {
+    if (
+      !event.target.classList.contains("remove") &&
+      !event.target.classList.contains("toggle")
+    ) {
+      return;
+    }
+
+    const id = event.target.parentElement.parentElement.dataset.id;
+
+    if (event.target.classList.contains("toggle")) {
+      for (let element of selectedProject.tasks) {
+        if (element.id === id) {
+          element.toggleCompletion();
+        }
+      }
+    } else {
+      const index = selectedProject.tasks.findIndex(
+        (element) => element.id === id,
+      );
+      if (index !== -1) {
+        selectedProject.tasks.splice(index, 1);
+      }
+    }
+    renderTasks(selectedProject);
+  });
+}
+
 function setupProjectDeletion() {
   const projectContainer = document.querySelector(".project-list");
   projectContainer.addEventListener("click", (event) => {
@@ -270,4 +300,5 @@ export {
   selectTask,
   setupEditForm,
   setupProjectDeletion,
+  setupTaskButtons,
 };

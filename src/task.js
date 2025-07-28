@@ -13,6 +13,9 @@ class Task {
     this.isComplete = isComplete;
     this.id = crypto.randomUUID();
   }
+  toggleCompletion() {
+    this.isComplete = !this.isComplete;
+  }
 }
 
 export default Task;
