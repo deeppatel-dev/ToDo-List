@@ -1,7 +1,9 @@
+import "./style.css";
 import Task from "./task";
 import Project from "./project";
-import { projects } from "./storage.js";
+import { getProjects } from "./storage.js";
 import { parse, format, parseISO } from "date-fns";
+import { saveProjects } from "./storage.js";
 
 let selectedProject;
 let currentlyEditingTask = null;
@@ -14,8 +16,7 @@ function setupProjectForm() {
     const name = projectInput.value;
     let newProject = new Project(name);
     projectInput.value = "";
-    projects.push(newProject);
-
+    getProjects().push(newProject);
     renderProjects();
   });
 }
@@ -60,13 +61,13 @@ function setupProjectDeletion() {
     let id = event.target.parentElement.dataset.id;
     if (
       (selectedProject && selectedProject.id === id) ||
-      projects.length === 1
+      getProjects().length === 1
     ) {
       selectedProject = null;
     }
-    const index = projects.findIndex((project) => project.id === id);
+    const index = getProjects().findIndex((project) => project.id === id);
     if (index !== -1) {
-      projects.splice(index, 1);
+      getProjects().splice(index, 1);
     }
     renderProjects();
     renderTasks(selectedProject);
@@ -132,7 +133,7 @@ function selectProject() {
 
     const projectId = e.target.dataset.id;
     e.target.classList.add("active");
-    for (const project of projects) {
+    for (const project of getProjects()) {
       if (project.id === projectId) {
         selectedProject = project;
       }
@@ -270,12 +271,13 @@ function renderTasks(project) {
     card.dataset.id = task.id;
     taskContainer.appendChild(card);
   }
+  saveProjects();
 }
 
 function renderProjects() {
   const projectList = document.querySelector(".project-list");
   projectList.innerHTML = "";
-  for (const project of projects) {
+  for (const project of getProjects()) {
     const projectName = document.createElement("li");
     if (project === selectedProject) {
       projectName.classList.add("active");
@@ -289,6 +291,7 @@ function renderProjects() {
     projectName.appendChild(deleteButton);
     projectList.appendChild(projectName);
   }
+  saveProjects();
 }
 
 export {
