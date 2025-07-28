@@ -1,7 +1,7 @@
 import Task from "./task";
 import Project from "./project";
 import { projects } from "./storage.js";
-import { parse, format } from "date-fns";
+import { parse, format, parseISO } from "date-fns";
 
 let selectedProject;
 
@@ -84,6 +84,76 @@ function selectProject() {
   });
 }
 
+let currentlyEditingTask = null;
+function selectTask() {
+  const taskContainer = document.querySelector(".task-section");
+
+  taskContainer.addEventListener("click", (event) => {
+    if (
+      event.target.textContent === "Please Select a Project" ||
+      event.target.classList.contains("task-section")
+    ) {
+      return;
+    }
+
+    const id = event.target.dataset.id || event.target.parentElement.dataset.id;
+    if (!id) return;
+
+    const task = selectedProject.tasks.find((curr) => curr.id === id);
+    if (!task) return;
+
+    currentlyEditingTask = task;
+
+    const dialog = document.querySelector(".editDialog");
+    dialog.showModal();
+
+    document.querySelector(".editDialog #taskTitle").value = task.title;
+    document.querySelector(".editDialog #taskDescription").value =
+      task.description;
+
+    const taskDueDate = document.querySelector(".editDialog #taskDueDate");
+    const cleaned = task.dueDate.replace(/(\d+)(st|nd|rd|th)/, "$1");
+    const parsedDate = parse(cleaned, "EEEE, MMMM d, yyyy", new Date());
+    taskDueDate.value = format(parsedDate, "yyyy-MM-dd");
+    document.querySelector(".editDialog #taskPriority").value = task.priority;
+    document.querySelector(".editDialog #taskCompletion").checked =
+      task.isComplete;
+  });
+}
+
+function setupEditForm() {
+  const form = document.querySelector(".editDialog form");
+  const dialog = document.querySelector(".editDialog");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!currentlyEditingTask) return;
+
+    const taskTitle = document.querySelector(".editDialog #taskTitle");
+    const taskDescription = document.querySelector(
+      ".editDialog #taskDescription",
+    );
+    const taskDueDate = document.querySelector(".editDialog #taskDueDate");
+    const taskPriority = document.querySelector(".editDialog #taskPriority");
+    const taskCompletion = document.querySelector(
+      ".editDialog #taskCompletion",
+    );
+
+    const dueDate = parseISO(taskDueDate.value);
+
+    currentlyEditingTask.title = taskTitle.value || currentlyEditingTask.title;
+    currentlyEditingTask.description =
+      taskDescription.value || currentlyEditingTask.description;
+    currentlyEditingTask.dueDate = format(dueDate, "PPPP");
+    currentlyEditingTask.priority =
+      taskPriority.value || currentlyEditingTask.priority;
+    currentlyEditingTask.isComplete = taskCompletion.checked;
+
+    renderTasks(selectedProject);
+    form.reset();
+    dialog.close();
+  });
+}
 function renderTasks(project) {
   const taskContainer = document.querySelector(".task-section");
   taskContainer.innerHTML = "";
@@ -165,4 +235,6 @@ export {
   renderProjects,
   selectedProject,
   selectProject,
+  selectTask,
+  setupEditForm,
 };
