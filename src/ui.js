@@ -39,7 +39,7 @@ function setupTaskForm() {
 
     const taskDueDate = document.querySelector("#taskDueDate");
     const dueDate = new Date(taskDueDate.value);
-    const formattedDueDate = format(dueDate, "MMMM do, yyyy");
+    const formattedDueDate = format(dueDate, "PPPP");
 
     const taskPriority = document.querySelector("#taskPriority");
     const priority = taskPriority.value;
@@ -84,6 +84,25 @@ function selectProject() {
   });
 }
 
+function selectTask() {
+  const taskContainer = document.querySelector(".task-section");
+  taskContainer.addEventListener("click", (event) => {
+    if (
+      event.target.textContent === "Please Select a Project" ||
+      event.target.classList.contains("task-section")
+    ) {
+      return;
+    }
+
+    let id = event.target.dataset.id || event.target.parentElement.dataset.id;
+    if (id) {
+      console.log(`The ID is ${id}`);
+    }
+  });
+}
+
+// function editTask() {}
+
 function renderTasks(project) {
   const taskContainer = document.querySelector(".task-section");
   taskContainer.innerHTML = "";
@@ -117,7 +136,7 @@ function renderTasks(project) {
     card.appendChild(dueDate);
 
     const completionStatus = document.createElement("h5");
-    completionStatus.textContent = `Completion Status: ${task.isComplete}`;
+    completionStatus.textContent = `Completion Status: ${task.isComplete ? "True" : "False"}`;
     card.appendChild(completionStatus);
 
     const buttonGroup = document.createElement("div");
@@ -165,4 +184,5 @@ export {
   renderProjects,
   selectedProject,
   selectProject,
+  selectTask,
 };
