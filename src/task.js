@@ -3,7 +3,7 @@ class Task {
     title = "",
     description = "",
     dueDate = "",
-    priority = "Low",
+    priority = "low",
     isComplete = false,
   ) {
     this.title = title;
