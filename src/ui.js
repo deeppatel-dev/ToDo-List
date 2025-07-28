@@ -1,6 +1,7 @@
 import Task from "./task";
 import Project from "./project";
 import { projects } from "./storage.js";
+import { format } from "date-fns";
 
 let selectedProject;
 
@@ -19,14 +20,14 @@ function setupProjectForm() {
 }
 
 function setupTaskForm() {
-  let dialog = document.querySelector("dialog");
+  let dialog = document.querySelector(".addDialog");
   document.querySelector(".newTask").addEventListener("click", () => {
     if (!selectedProject) {
       return;
     }
     dialog.showModal();
   });
-  const form = document.querySelector("dialog form");
+  const form = document.querySelector(".addDialog form");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -37,7 +38,8 @@ function setupTaskForm() {
     const description = taskDescription.value;
 
     const taskDueDate = document.querySelector("#taskDueDate");
-    const dueDate = taskDueDate.value;
+    const dueDate = new Date(taskDueDate.value);
+    const formattedDueDate = format(dueDate, "MMMM do, yyyy");
 
     const taskPriority = document.querySelector("#taskPriority");
     const priority = taskPriority.value;
@@ -45,7 +47,13 @@ function setupTaskForm() {
     const taskCompletion = document.querySelector("#taskCompletion");
     const isComplete = taskCompletion.checked;
 
-    selectedProject.addTask(title, description, dueDate, priority, isComplete);
+    selectedProject.addTask(
+      title,
+      description,
+      formattedDueDate,
+      priority,
+      isComplete,
+    );
     renderTasks(selectedProject);
     form.reset();
     dialog.close();
@@ -56,7 +64,7 @@ function selectProject() {
   const projectList = document.querySelector(".project-list");
 
   projectList.addEventListener("click", (e) => {
-    if (e.target.classList[0] === "project-list") {
+    if (e.target.classList.contains("project-list")) {
       return;
     }
     const projectsList = document.querySelectorAll(".project-list li");
