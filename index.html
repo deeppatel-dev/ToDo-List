@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="layout">
+      <div class="sidebar">
+        <h1>Projects</h1>
+        <form>
+          <label for="projectName"></label>
+          <input
+            type="text"
+            name="projectName"
+            id="projectName"
+            placeholder="Enter Project Name"
+            required
+          />
+          <button type="submit" class="createProject">New Project</button>
+        </form>
+        <ul class="project-list"></ul>
+      </div>
+      <main>
+        <h1>Tasks</h1>
+        <button class="newTask">New Task</button>
+        <dialog class="addDialog">
+          <h1>Enter Task Information</h1>
+          <form method="dialog">
+            <div class="form-item">
+              <label for="taskTitle">Title:</label>
+              <input type="text" name="taskTitle" id="taskTitle" required />
+            </div>
+
+            <div class="form-item">
+              <label for="taskDescription">Description:</label>
+              <textarea
+                name="taskDescription"
+                id="taskDescription"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-item">
+              <label for="taskDueDate">Due Date:</label>
+              <input type="date" name="taskDueDate" id="taskDueDate" required />
+            </div>
+
+            <div class="form-item">
+              <label for="taskPriority">Priority:</label>
+              <select name="taskPriority" id="taskPriority" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+
+            <div class="form-item checkBox">
+              <label for="taskCompletion">Completed?</label>
+              <input
+                type="checkbox"
+                name="taskCompletion"
+                id="taskCompletion"
+              />
+            </div>
+
+            <button class="addTask" type="submit">Add Task</button>
+          </form>
+        </dialog>
+        <div class="task-section">
+          <h1>Please Select a Project</h1>
+        </div>
+      </main>
+      <dialog class="editDialog">
+        <h1>Edit Task Information</h1>
+        <form method="dialog">
+          <div class="form-item">
+            <label for="taskTitle">Title:</label>
+            <input type="text" name="taskTitle" id="taskTitle" required />
+          </div>
+
+          <div class="form-item">
+            <label for="taskDescription">Description:</label>
+            <textarea
+              name="taskDescription"
+              id="taskDescription"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-item">
+            <label for="taskDueDate">Due Date:</label>
+            <input type="date" name="taskDueDate" id="taskDueDate" required />
+          </div>
+
+          <div class="form-item">
+            <label for="taskPriority">Priority:</label>
+            <select name="taskPriority" id="taskPriority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="form-item checkBox">
+            <label for="taskCompletion">Completed?</label>
+            <input type="checkbox" name="taskCompletion" id="taskCompletion" />
+          </div>
+
+          <button class="addTask" type="submit">Edit Task</button>
+        </form>
+      </dialog>
+    </div>
+  </body>
+</html>
