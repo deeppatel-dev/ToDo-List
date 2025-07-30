@@ -258,3 +258,7 @@ textarea {
   border-radius: 8px;
   color: white;
 }
+
+.completed {
+  text-decoration: line-through;
+}

@@ -235,9 +235,11 @@ function renderTasks(project) {
         card.classList.add("high");
         break;
     }
-
     const title = document.createElement("h1");
     title.textContent = task.title;
+    if (task.isComplete) {
+      title.classList.add("completed");
+    }
     card.appendChild(title);
 
     const description = document.createElement("p");
